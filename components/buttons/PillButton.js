@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-import LottieView from 'lottie-react-native';
 import ButtonText from '../texts/ButtonText.js';
+import '../../global.js';
 
 export default function CTAButton({
     children = 'Submit', // -> default text
@@ -20,7 +19,7 @@ export default function CTAButton({
                 setLoading(true);
             }}
             disabled={isDisabled}
-            style={{ borderColor: color }}
+            style={{ borderColor: color, backgroundColor: global.bgColor }}
         >
             <ButtonText style={{ color: color }}>{children}</ButtonText>
         </Touchable>
@@ -36,5 +35,6 @@ const Touchable = styled.TouchableOpacity`
     justify-content: center;
     margin-bottom: 10px;
     align-items: center;
+    box-shadow: 2px 2px 0px #007aff90;
 `;
 // box-shadow: 0px 2px 0px #00000030;
