@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Login from '../screens/Login.js';
-import CTAButton from '../components/buttons/CTAButton.js';
 import DotTabBar from './tabbars/DotTabBar.js';
+import IconBoxTabBar from './tabbars/IconBoxTabBar.js';
 import {
     HomeSymbol,
     StatisticsSymbol,
@@ -24,38 +24,71 @@ export default function Tabs() {
 
     return (
         <Tab.Navigator
-            tabBar={(props) => <DotTabBar tabs={tabs} {...props} />}
+            tabBar={(props) => <IconBoxTabBar tabs={tabs} {...props} />}
             screenOptions={({ route }) => ({ headerShown: false })}
         >
             <Tab.Screen name='Login' component={Login} />
-            <Tab.Screen name='Nee' component={CTAButton} />
+            <Tab.Screen name='Login2' component={Login} />
+            <Tab.Screen name='Login3' component={Login} />
         </Tab.Navigator>
     );
 }
 
 function returnAllTabs() {
+    const iconSizeForDot = 35;
+    const iconSizeForBox = 30;
+
     const tabs = [
         {
             name: 'Login',
             active: (
                 <FilledHomeSymbol
-                    width={35}
-                    height={35}
+                    width={iconSizeForBox}
+                    height={iconSizeForBox}
                     color={global.primaryColor}
                 />
             ),
-            inactive: <HomeSymbol width={35} height={35} color={'#d1d5db'} />,
+            inactive: (
+                <HomeSymbol
+                    width={iconSizeForBox}
+                    height={iconSizeForBox}
+                    color={'#d1d5db'}
+                />
+            ),
         },
         {
-            name: 'Nee',
+            name: 'Login2',
             active: (
-                <FilledPlusSymbol
-                    width={35}
-                    height={35}
+                <FilledStatisticsSymbol
+                    width={iconSizeForBox}
+                    height={iconSizeForBox}
                     color={global.primaryColor}
                 />
             ),
-            inactive: <PlusSymbol width={35} height={35} color={'#d1d5db'} />,
+            inactive: (
+                <StatisticsSymbol
+                    width={iconSizeForBox}
+                    height={iconSizeForBox}
+                    color={'#d1d5db'}
+                />
+            ),
+        },
+        {
+            name: 'Login3',
+            active: (
+                <FilledPlusSymbol
+                    width={iconSizeForBox}
+                    height={iconSizeForBox}
+                    color={global.primaryColor}
+                />
+            ),
+            inactive: (
+                <PlusSymbol
+                    width={iconSizeForBox}
+                    height={iconSizeForBox}
+                    color={'#d1d5db'}
+                />
+            ),
         },
     ];
 
