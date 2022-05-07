@@ -32,7 +32,7 @@ export default function CTAButton({
             {loading ? (
                 <LoadingIcon />
             ) : (
-                <ButtonText isWhite>{children}</ButtonText>
+                <ButtonText color='#fff'>{children}</ButtonText>
             )}
         </Touchable>
     );
