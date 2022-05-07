@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
 
-export default function Text(props) {
+export default function Text({ children, color = '#9ca3af' }) {
     let [fontsLoaded] = useFonts({
         Rubik_500Medium,
     });
@@ -10,13 +10,16 @@ export default function Text(props) {
         return null;
     }
 
-    return <T style={{ fontFamily: 'Rubik_500Medium' }}>{props.children}</T>;
+    return (
+        <T style={{ fontFamily: 'Rubik_500Medium', color: color }}>
+            {children}
+        </T>
+    );
 }
 
 const T = styled.Text`
     font-weight: 500;
     font-size: 17px;
-    color: #9ca3af;
     padding-vertical: 4px;
     line-height: 24px;
 `;
