@@ -33,7 +33,6 @@ const Touchable = styled.TouchableOpacity`
     min-height: 50px;
     border-color: black;
     border-width: 2px;
-    background-color: white;
     justify-content: center;
     margin-bottom: 10px;
     align-items: center;
