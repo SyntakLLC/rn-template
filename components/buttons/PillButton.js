@@ -36,5 +36,5 @@ const Touchable = styled.TouchableOpacity`
     justify-content: center;
     margin-bottom: 10px;
     align-items: center;
-    box-shadow: 0px 2px 0px #00000030;
 `;
+// box-shadow: 0px 2px 0px #00000030;
