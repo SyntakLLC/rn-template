@@ -17,7 +17,6 @@ const T = styled.Text`
     font-weight: 500;
     font-size: 17px;
     color: #9ca3af;
-    text-align: center;
     padding-vertical: 4px;
     line-height: 24px;
 `;
