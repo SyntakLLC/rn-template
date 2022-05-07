@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
+import '../../global.js';
 
 export default function ButtonText({ children, isWhite, isBlack }) {
     let [fontsLoaded] = useFonts({
@@ -14,7 +15,7 @@ export default function ButtonText({ children, isWhite, isBlack }) {
         <T
             style={{
                 fontFamily: 'Rubik_500Medium',
-                color: isWhite ? '#fff' : '#000',
+                color: isWhite ? '#fff' : global.primaryColor,
             }}
         >
             {children}
