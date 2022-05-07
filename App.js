@@ -1,13 +1,10 @@
-import Login from './screens/Login.js';
-import { setCustomText } from 'react-native-global-props';
+import { NavigationContainer } from '@react-navigation/native';
+import TabLayout from './navigation/TabLayout.js';
 
 export default function App() {
-    // setCustomText(customTextProps);
-    return <Login />;
+    return (
+        <NavigationContainer>
+            <TabLayout />
+        </NavigationContainer>
+    );
 }
-
-const customTextProps = {
-    style: {
-        fontFamily: 'Calibri',
-    },
-};
