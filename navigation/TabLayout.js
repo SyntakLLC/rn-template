@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Login from '../screens/Login.js';
-import DotTabBar from './tabbars/DotTabBar.js';
+import EmptyState from '../screens/EmptyState.js';
 import IconBoxTabBar from './tabbars/IconBoxTabBar.js';
 import {
     HomeSymbol,
@@ -28,7 +28,7 @@ export default function Tabs() {
             screenOptions={({ route }) => ({ headerShown: false })}
         >
             <Tab.Screen name='Login' component={Login} />
-            <Tab.Screen name='Login2' component={Login} />
+            <Tab.Screen name='Login2' component={EmptyState} />
             <Tab.Screen name='Login3' component={Login} />
         </Tab.Navigator>
     );
