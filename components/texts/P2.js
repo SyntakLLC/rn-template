@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
 
-export default function Caption({ children, uppercase = false }) {
+export default function P2({ children, uppercase = false }) {
     let [fontsLoaded] = useFonts({
         Rubik_500Medium,
     });

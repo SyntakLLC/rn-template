@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
 import '../../global.js';
 
-export default function Heading(props) {
+export default function H2(props) {
     let [fontsLoaded] = useFonts({
         Rubik_500Medium,
     });
@@ -12,12 +12,7 @@ export default function Heading(props) {
     }
 
     return (
-        <T
-            style={{
-                fontFamily: 'Rubik_500Medium',
-                color: global.textColor,
-            }}
-        >
+        <T style={{ fontFamily: 'Rubik_500Medium', color: global.textColor }}>
             {props.children}
         </T>
     );
@@ -25,7 +20,8 @@ export default function Heading(props) {
 
 const T = styled.Text`
     font-weight: 600;
-    font-size: 40px;
+    font-size: 24px;
+    color: #000000;
     text-align: center;
     padding-vertical: 4px;
 `;
