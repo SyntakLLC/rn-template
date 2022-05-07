@@ -1,13 +1,14 @@
 import { Appearance } from 'react-native';
 
 global.primaryColor = '#007aff';
-global.gray900 = '#111827';
-global.lightBg = '#fff';
-global.darkBg = '#181a1b';
 
-// text color
-global.textColor = '#164e63';
+// light mode
+global.textColor = '#0c4a6e';
+global.bgColor = '#fff';
+
+// if dark mode
 const colorScheme = Appearance.getColorScheme();
 if (colorScheme === 'dark') {
     global.textColor = '#cffafe';
+    global.bgColor = '#181a1b';
 }
