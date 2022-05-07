@@ -1,15 +1,8 @@
 import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
-import { Appearance } from 'react-native';
 import '../../global.js';
 
 export default function Heading(props) {
-    let color = '#164e63';
-    const colorScheme = Appearance.getColorScheme();
-    if (colorScheme === 'dark') {
-        color = '#cffafe';
-    }
-
     let [fontsLoaded] = useFonts({
         Rubik_500Medium,
     });
@@ -19,7 +12,12 @@ export default function Heading(props) {
     }
 
     return (
-        <T style={{ fontFamily: 'Rubik_500Medium', color: color }}>
+        <T
+            style={{
+                fontFamily: 'Rubik_500Medium',
+                color: global.textColor,
+            }}
+        >
             {props.children}
         </T>
     );
