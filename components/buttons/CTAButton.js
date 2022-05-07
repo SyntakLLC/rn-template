@@ -47,7 +47,7 @@ const Touchable = styled.TouchableOpacity`
     justify-content: center;
     margin-vertical: 10px;
     align-items: center;
-    box-shadow: 0px 2px 0px #00000030;
+    box-shadow: 4px 4px 0px #007aff70;
     flex-direction: row;
 `;
 
