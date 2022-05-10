@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
 
-export default function P2({ children, uppercase = false, color = 'gray' }) {
+export default function P2({
+    children,
+    uppercase = false,
+    color = 'gray',
+    isCenter = false,
+}) {
     let [fontsLoaded] = useFonts({
         Rubik_500Medium,
     });
@@ -17,6 +22,7 @@ export default function P2({ children, uppercase = false, color = 'gray' }) {
                 fontWeight: uppercase ? '700' : '600',
                 textTransform: uppercase ? 'uppercase' : 'none',
                 color: color,
+                textAlign: isCenter ? 'center' : 'left',
             }}
         >
             {children}

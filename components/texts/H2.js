@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
 import '../../global.js';
 
-export default function H2({ children, color = global.textColor }) {
+export default function H2({
+    children,
+    color = global.textColor,
+    isCenter = false,
+}) {
     let [fontsLoaded] = useFonts({
         Rubik_500Medium,
     });
@@ -12,7 +16,13 @@ export default function H2({ children, color = global.textColor }) {
     }
 
     return (
-        <T style={{ fontFamily: 'Rubik_500Medium', color: color }}>
+        <T
+            style={{
+                fontFamily: 'Rubik_500Medium',
+                color: color,
+                textAlign: isCenter ? 'center' : 'left',
+            }}
+        >
             {children}
         </T>
     );

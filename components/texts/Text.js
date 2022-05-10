@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
 
-export default function Text({ children, color = '#9ca3af' }) {
+export default function Text({
+    children,
+    color = '#9ca3af',
+    isCenter = false,
+}) {
     let [fontsLoaded] = useFonts({
         Rubik_500Medium,
     });
@@ -11,7 +15,13 @@ export default function Text({ children, color = '#9ca3af' }) {
     }
 
     return (
-        <T style={{ fontFamily: 'Rubik_500Medium', color: color }}>
+        <T
+            style={{
+                fontFamily: 'Rubik_500Medium',
+                color: color,
+                textAlign: isCenter ? 'center' : 'left',
+            }}
+        >
             {children}
         </T>
     );
