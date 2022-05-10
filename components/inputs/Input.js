@@ -1,31 +1,49 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { P2 } from '../texts/index.js';
 import '../../global.js';
 
 export default function Input({
-    color = '#9ca3af',
-    borderColor = global.borderColor,
-    editable = true,
-    label = 'Input',
-    placeholder = 'Start typing here...',
-    value = '',
-    onEdit,
+    color = '#9ca3af', // text color
+    borderColor = global.borderColor, // the border color
+    editable = true, // is the text input editable
+    label, // sets the label above the text input
+    placeholder = 'Start typing here...', // placeholder
+    keyboardType = 'default', // what keyboard should appear?
+    isSecure = false, // true if password
+    isCapitalized = false, // should the first letter be caps?
+    value = '', // value --> this should be "state"
+    onEdit, // edit method --> should be the edit state method
 }) {
+    const [border, setBorder] = useState(borderColor);
     return (
         <InputGroup>
-            <LabelPadding>
-                <P2>{label}</P2>
-            </LabelPadding>
+            {/* Only show the label if it has a value */}
+            {label ? (
+                <LabelPadding>
+                    <P2>{label}</P2>
+                </LabelPadding>
+            ) : null}
             <I
+                autoCapitalize={isCapitalized}
+                secureTextEntry={isSecure}
+                keyboardType={keyboardType}
                 placeholder={placeholder}
                 placeholderTextColor={color}
                 value={value}
                 onChangeText={onEdit}
                 editable={editable}
                 style={{
-                    borderColor: borderColor,
+                    borderColor: border,
                     backgroundColor: global.bgColor,
                     color: color,
+                }}
+                border={border}
+                onFocus={() => {
+                    setBorder(global.primaryColor);
+                }}
+                onBlur={() => {
+                    setBorder(borderColor);
                 }}
             />
         </InputGroup>
@@ -41,7 +59,7 @@ const I = styled.TextInput`
     justify-content: center;
     margin-vertical: 10px;
     align-items: center;
-    box-shadow: 4px 4px 0px #00000030;
+    box-shadow: 4px 4px 0px ${(props) => props.border};
     flex-direction: row;
     font-weight: 500;
     font-size: 17px;
