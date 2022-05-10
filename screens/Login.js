@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import { CTAButton, PillButton } from '../components/buttons/index.js';
 import { H1, H2, P2, Text } from '../components/texts/index.js';
 import { Input } from '../components/inputs/index.js';
-import { Grid, Col } from '../components/layouts/index.js';
+import { Grid, Col, Row } from '../components/layouts/index.js';
 import ModernIconList from '../components/lists/ModernIconList.js';
+import Alert from '../components/alerts/Alert.js';
 import Svg, { Path } from 'react-native-svg';
 import '../global.js';
 
@@ -14,41 +15,53 @@ export default function App() {
 
     return (
         <Background style={{ backgroundColor: global.bgColor }}>
-            <ScrollView
-                style={{
-                    paddingVertical: 40,
-                    width: '100%',
-                    paddingHorizontal: 20,
-                }}
+            <KeyboardView
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             >
-                <H1>11,670.90</H1>
-                <P2 uppercase>usd</P2>
-                <H2>What did you think?</H2>
-                <Text>
-                    Let us know how your playlist kept you moving. We'll save
-                    your feedback for later.
-                </Text>
-                <P2>This is a caption</P2>
+                <ScrollView
+                    style={{
+                        paddingVertical: 40,
+                        width: '100%',
+                        paddingHorizontal: 20,
+                    }}
+                >
+                    <Alert>
+                        Hey! Looks like your account is verified. Keep checking
+                        for more updates.
+                    </Alert>
+                    <Row style={{ alignItems: 'center' }}>
+                        <H1>11,670.90</H1>
+                        <P2 uppercase>usd</P2>
+                    </Row>
+                    <H2>What did you think?</H2>
+                    <Text>
+                        Let us know how your playlist kept you moving. We'll
+                        save your feedback for later.
+                    </Text>
+                    <P2>This is a caption</P2>
 
-                <Input
-                    label='Name'
-                    value={text}
-                    onEdit={(t) => updateText(t)}
-                />
+                    <ModernIconList
+                        items={[
+                            { name: 'My accounts', icon: <TesterIcon /> },
+                            { name: 'My orders', icon: <TesterIcon /> },
+                            { name: 'My saved', icon: null },
+                        ]}
+                    />
 
-                <ModernIconList
-                    items={[
-                        { name: 'My accounts', icon: <TesterIcon /> },
-                        { name: 'My orders', icon: <TesterIcon /> },
-                        { name: 'My saved', icon: null },
-                    ]}
-                />
+                    <PillButton>Pill</PillButton>
+                    <CTAButton onPress={() => console.log('lol')} isDanger>
+                        Select
+                    </CTAButton>
 
-                <PillButton>Pill</PillButton>
-                <CTAButton onPress={() => console.log('lol')}>Select</CTAButton>
+                    <Input
+                        label='Name'
+                        value={text}
+                        onEdit={(t) => updateText(t)}
+                    />
 
-                <Spacer />
-            </ScrollView>
+                    <Spacer />
+                </ScrollView>
+            </KeyboardView>
         </Background>
     );
 }
@@ -57,6 +70,10 @@ const Background = styled.SafeAreaView`
     flex: 1;
     align-items: center;
     justify-content: center;
+`;
+
+const KeyboardView = styled.KeyboardAvoidingView`
+    flex: 1;
 `;
 
 const Spacer = styled.View`
