@@ -7,10 +7,12 @@ export default function CTAButton({
     isDanger = false, // -> make button red
     isDisabled = false, // -> disable button, no loading indicator
     onPress, // -> function to call on press
+    color = '#007aff',
 }) {
     // derives the color of the button from our props.
-    let color = isDanger ? '#dc2626' : '#007aff';
-    if (isDisabled) color = '#9ca3af';
+    let c = color;
+    if (isDanger) c = '#dc2626';
+    if (isDisabled || onPress == null) c = '#9ca3af';
 
     return (
         <Touchable
@@ -18,10 +20,14 @@ export default function CTAButton({
                 onPress();
                 setLoading(true);
             }}
-            disabled={isDisabled}
-            style={{ borderColor: color, backgroundColor: global.bgColor }}
+            disabled={isDisabled || onPress == null}
+            style={{
+                borderColor: c,
+                backgroundColor: global.bgColor,
+            }}
+            color={c}
         >
-            <ButtonText style={{ color: color }}>{children}</ButtonText>
+            <ButtonText color={c}>{children}</ButtonText>
         </Touchable>
     );
 }
@@ -35,6 +41,6 @@ const Touchable = styled.TouchableOpacity`
     justify-content: center;
     margin-bottom: 10px;
     align-items: center;
-    box-shadow: 2px 2px 0px #007aff90;
+    box-shadow: 2px 2px 0px ${(props) => props.color};
 `;
 // box-shadow: 0px 2px 0px #00000030;

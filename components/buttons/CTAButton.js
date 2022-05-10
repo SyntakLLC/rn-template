@@ -16,7 +16,7 @@ export default function CTAButton({
     const [loading, setLoading] = useState(isLoading);
 
     // derives the color of the button from our props.
-    let shouldDisable = loading || isDisabled;
+    let shouldDisable = loading || isDisabled || onPress == null;
     let color = isDanger ? '#dc2626' : '#007aff';
     if (shouldDisable) color = '#9ca3af';
 
@@ -28,6 +28,7 @@ export default function CTAButton({
             }}
             disabled={shouldDisable}
             style={{ backgroundColor: color }}
+            color={color}
         >
             {loading ? (
                 <LoadingIcon />
@@ -47,7 +48,7 @@ const Touchable = styled.TouchableOpacity`
     justify-content: center;
     margin-vertical: 10px;
     align-items: center;
-    box-shadow: 4px 4px 0px #007aff70;
+    box-shadow: 4px 4px 0px ${(props) => props.color}50;
     flex-direction: row;
 `;
 
