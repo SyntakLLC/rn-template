@@ -10,9 +10,7 @@ export default function EmptyState() {
             <H1>Add projects</H1>
             <Text>Projects liven up the app!</Text>
             <Spacer />
-            <CTAButton onPress={() => console.log('')}>
-                Start creating
-            </CTAButton>
+            <CTAButton>Start creating</CTAButton>
         </Background>
     );
 }
