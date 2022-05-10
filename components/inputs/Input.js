@@ -40,7 +40,7 @@ export default function Input({
                 }}
                 border={border}
                 onFocus={() => {
-                    setBorder(global.primaryColor);
+                    // setBorder(global.primaryColor);
                 }}
                 onBlur={() => {
                     setBorder(borderColor);
