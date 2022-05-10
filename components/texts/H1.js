@@ -26,6 +26,5 @@ export default function H1({ children, color = global.textColor }) {
 const T = styled.Text`
     font-weight: 600;
     font-size: 40px;
-    text-align: center;
     padding-vertical: 4px;
 `;
