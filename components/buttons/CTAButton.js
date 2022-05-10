@@ -5,11 +5,14 @@ import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 import ButtonText from '../texts/ButtonText.js';
 
-export default function CTAButton({
+export default function CtaButton({
     children = 'Submit', // -> default text
     isDanger = false, // -> make button red
     isLoading = false, // -> disable button and add loading indicator
     isDisabled = false, // -> disable button, no loading indicator
+    hasShadow = true, // does the button have a drop shadow
+    isFullyRounded = false, // makes the border radius full
+    isSharp = false, // removes all border radius
     onPress, // -> function to call on press
 }) {
     // the prop is the default value. on press, we want to set loading to true.
@@ -27,13 +30,14 @@ export default function CTAButton({
                 setLoading(true);
             }}
             disabled={shouldDisable}
-            style={{ backgroundColor: color }}
-            color={color}
+            {...{ color, hasShadow, isFullyRounded, isSharp }}
         >
             {loading ? (
                 <LoadingIcon />
             ) : (
-                <ButtonText color='#fff'>{children}</ButtonText>
+                <ButtonText uppercase={isSharp} color='#fff'>
+                    {children}
+                </ButtonText>
             )}
         </Touchable>
     );
@@ -42,13 +46,17 @@ export default function CTAButton({
 const Touchable = styled.TouchableOpacity`
     width: 94%;
     width: 100%;
-    border-radius: 15px;
+    border-radius: ${(props) =>
+        props.isFullyRounded ? '9999px' : props.isSharp ? '0px' : '15px'};
     height: 55px;
-    background-color: #000;
+    background-color: ${(props) => props.color};
     justify-content: center;
     margin-vertical: 10px;
     align-items: center;
-    box-shadow: 4px 4px 0px ${(props) => props.color}50;
+    box-shadow: ${(props) =>
+        props.hasShadow
+            ? `4px 4px 0px ${props.color}50`
+            : `0px 0px 0px #ffffff50`};
     flex-direction: row;
 `;
 

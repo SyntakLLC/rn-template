@@ -1,4 +1,4 @@
-import CTAButton from './CTAButton.js';
+import CtaButton from './CtaButton.js';
 import PillButton from './PillButton.js';
 
-export { CTAButton, PillButton };
+export { CtaButton, PillButton };

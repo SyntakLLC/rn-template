@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
 import '../../global.js';
 
-export default function ButtonText({ children, color = global.primaryColor }) {
+export default function ButtonText({
+    children,
+    color = global.primaryColor,
+    uppercase = false,
+}) {
     let [fontsLoaded] = useFonts({
         Rubik_500Medium,
     });
@@ -17,6 +21,7 @@ export default function ButtonText({ children, color = global.primaryColor }) {
                 fontFamily: 'Rubik_500Medium',
                 color: color,
             }}
+            {...{ uppercase }}
         >
             {children}
         </T>
@@ -29,4 +34,5 @@ const T = styled.Text`
     color: black;
     text-align: center;
     line-height: 22px;
+    text-transform: ${(props) => (props.uppercase ? 'uppercase' : 'none')};
 `;

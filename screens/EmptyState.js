@@ -1,5 +1,5 @@
 import { H1, Text } from '../components/texts/index.js';
-import { CTAButton } from '../components/buttons/index.js';
+import { CtaButton } from '../components/buttons/index.js';
 import styled from 'styled-components';
 import Svg, { Path } from 'react-native-svg';
 
@@ -10,7 +10,7 @@ export default function EmptyState() {
             <H1>Add projects</H1>
             <Text>Projects liven up the app!</Text>
             <Spacer />
-            <CTAButton>Start creating</CTAButton>
+            <CtaButton>Start creating</CtaButton>
         </Background>
     );
 }
