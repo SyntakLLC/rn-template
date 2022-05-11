@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
+import safeTextDisplay from './helpers/SafeTextDisplay.js';
 
 export default function Text({
     children,
@@ -22,7 +23,7 @@ export default function Text({
                 textAlign: isCenter ? 'center' : 'left',
             }}
         >
-            {children}
+            {safeTextDisplay(children)}
         </T>
     );
 }

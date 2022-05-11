@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useFonts, Rubik_500Medium } from '@expo-google-fonts/rubik';
+import safeTextDisplay from './helpers/SafeTextDisplay.js';
 import '../../global.js';
 
 export default function ButtonText({
@@ -23,7 +24,7 @@ export default function ButtonText({
             }}
             {...{ uppercase }}
         >
-            {children}
+            {safeTextDisplay(children)}
         </T>
     );
 }
