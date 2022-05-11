@@ -8,8 +8,9 @@ export default function Alert({
     onPress, // -> function to call on press
 }) {
     // derives the color of the button from our props.
-    let color = isDanger ? '#fecaca' : '#fef9c3';
-    let darkerColor = isDanger ? '#dc2626' : '#facc15';
+    let color = isDanger ? '#fee2e2' : '#fef9c3';
+    let iconColor = isDanger ? '#dc2626' : '#facc15';
+    let darkerColor = isDanger ? '#dc2626' : '#ca8a04';
 
     return (
         <Touchable
@@ -17,14 +18,13 @@ export default function Alert({
                 onPress();
                 setLoading(true);
             }}
-            style={{ backgroundColor: color + '80' }}
             color={color}
         >
-            <IconCircle style={{ backgroundColor: darkerColor }}>
-                <BellIcon color={color + '80'} width={22} height={22} />
+            <IconCircle style={{ backgroundColor: iconColor }}>
+                <BellIcon color={color} width={22} height={22} />
             </IconCircle>
             <TextView>
-                <P2 color='#ca8a04'>{children}</P2>
+                <P2 color={darkerColor}>{children}</P2>
             </TextView>
         </Touchable>
     );
@@ -35,10 +35,11 @@ const Touchable = styled.TouchableOpacity`
     border-radius: 15px;
     min-height: 55px;
     justify-content: center;
-    margin-vertical: 20px;
+    margin-vertical: 15px;
     padding: 10px;
     align-items: center;
     box-shadow: 4px 4px 0px ${(props) => props.color}50;
+    background-color: ${(props) => props.color}
     flex-direction: row;
 `;
 
@@ -54,6 +55,7 @@ const IconCircle = styled.View`
 
 const TextView = styled.View`
     margin-left: 50px;
+    width: 80%;
 `;
 
 function BellIcon(props) {
