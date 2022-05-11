@@ -25,7 +25,7 @@ export default function Input({
                 </LabelPadding>
             ) : null}
             <I
-                autoCapitalize={isCapitalized}
+                autoCapitalize={isCapitalized ? 'words' : 'none'}
                 secureTextEntry={isSecure}
                 keyboardType={keyboardType}
                 placeholder={placeholder}
