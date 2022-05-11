@@ -33,39 +33,15 @@ export default function App() {
 
                     <Spacer />
 
-                    <H2>Analytics</H2>
+                    <H2>Stories</H2>
                     <ScrollView
                         horizontal
-                        style={{ marginVertical: 15 }}
+                        style={{ paddingVertical: 15 }}
                         showsHorizontalScrollIndicator={false}
                     >
-                        <View
-                            style={{
-                                height: 180,
-                                width: 140,
-                                backgroundColor: '#c7a7d4',
-                                borderRadius: 15,
-                                marginRight: 15,
-                            }}
-                        />
-                        <View
-                            style={{
-                                height: 180,
-                                width: 140,
-                                backgroundColor: '#f48479',
-                                borderRadius: 15,
-                                marginRight: 15,
-                            }}
-                        />
-                        <View
-                            style={{
-                                height: 180,
-                                width: 140,
-                                backgroundColor: '#f6d690',
-                                borderRadius: 15,
-                                marginRight: 15,
-                            }}
-                        />
+                        <AnalyticsPiece color='#c7a7d4' />
+                        <AnalyticsPiece color='#f48479' />
+                        <AnalyticsPiece color='#f6d690' />
                     </ScrollView>
 
                     <Spacer />
@@ -105,6 +81,15 @@ const KeyboardView = styled.KeyboardAvoidingView`
 const Spacer = styled.View`
     flex: 1;
     height: 20px;
+`;
+
+const AnalyticsPiece = styled.View`
+    height: 180px;
+    width: 140px;
+    background-color: ${(props) => props.color};
+    box-shadow: 4px 4px 0px ${(props) => props.color}50;
+    border-radius: 15px;
+    margin-right: 15px;
 `;
 
 const ListStarIcon = (props) => (
