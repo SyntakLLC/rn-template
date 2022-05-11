@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import styled from 'styled-components';
 import { CtaButton, PillButton } from '../components/buttons/index.js';
 import { H1, H2, P2, Text } from '../components/texts/index.js';
@@ -20,46 +20,72 @@ export default function App() {
             >
                 <ScrollView
                     style={{
-                        paddingVertical: 40,
+                        paddingVertical: 30,
                         width: '100%',
                         paddingHorizontal: 20,
+                        overflow: 'shown',
                     }}
                 >
+                    <H1>Hello Peter</H1>
                     <Alert>
-                        Hey! Looks like your account is verified. Keep checking
-                        for more updates.
+                        You have a meeting today with jk@paperless.com.
                     </Alert>
-                    <Row style={{ alignItems: 'center' }}>
-                        <H1>11,670.90</H1>
-                        <P2 uppercase>usd</P2>
-                    </Row>
-                    <H2>What did you think?</H2>
-                    <Text>
-                        Let us know how your playlist kept you moving. We'll
-                        save your feedback for later.
-                    </Text>
-                    <P2>This is a caption</P2>
 
+                    <Spacer />
+
+                    <H2>Analytics</H2>
+                    <ScrollView
+                        horizontal
+                        style={{ marginVertical: 15 }}
+                        showsHorizontalScrollIndicator={false}
+                    >
+                        <View
+                            style={{
+                                height: 180,
+                                width: 140,
+                                backgroundColor: '#c7a7d4',
+                                borderRadius: 15,
+                                marginRight: 15,
+                            }}
+                        />
+                        <View
+                            style={{
+                                height: 180,
+                                width: 140,
+                                backgroundColor: '#f48479',
+                                borderRadius: 15,
+                                marginRight: 15,
+                            }}
+                        />
+                        <View
+                            style={{
+                                height: 180,
+                                width: 140,
+                                backgroundColor: '#f6d690',
+                                borderRadius: 15,
+                                marginRight: 15,
+                            }}
+                        />
+                    </ScrollView>
+
+                    <Spacer />
+
+                    <Row
+                        style={{
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <H2>Goals</H2>
+                        <P2>(this week)</P2>
+                    </Row>
                     <ModernIconList
                         items={[
                             { name: 'My accounts', icon: <ListStarIcon /> },
                             { name: 'My orders', icon: <ListStarIcon /> },
-                            { name: 'My saved', icon: null },
+                            { name: 'My saved', icon: <ListStarIcon /> },
                         ]}
                     />
-
-                    <PillButton>Pill</PillButton>
-                    <CtaButton onPress={() => console.log('lol')} isDanger>
-                        Select
-                    </CtaButton>
-
-                    <Input
-                        label='Name'
-                        value={text}
-                        onEdit={(t) => updateText(t)}
-                    />
-
-                    <Spacer />
                 </ScrollView>
             </KeyboardView>
         </Background>
@@ -78,7 +104,7 @@ const KeyboardView = styled.KeyboardAvoidingView`
 
 const Spacer = styled.View`
     flex: 1;
-    height: 50px;
+    height: 20px;
 `;
 
 const ListStarIcon = (props) => (
@@ -86,7 +112,7 @@ const ListStarIcon = (props) => (
         xmlns='http://www.w3.org/2000/svg'
         style={{ width: 20, height: 20 }}
         viewBox='0 0 20 20'
-        fill='#00000050'
+        fill='#ffffff50'
         {...props}
     >
         <Path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z' />
