@@ -3,7 +3,11 @@ import { Text } from '../texts/index.js';
 import Svg, { Path } from 'react-native-svg';
 import '../../global.js';
 
-export default function ModernIconList({ items, onPress }) {
+export default function ModernIconList({
+    items,
+    onPress,
+    showsChevron = true,
+}) {
     return (
         <List>
             {items.map((child, index) => {
@@ -14,7 +18,7 @@ export default function ModernIconList({ items, onPress }) {
                             {child.icon ? <Spacer /> : null}
                             <Text color={global.textColor}>{child.name}</Text>
                         </NameAndIcon>
-                        <Arrow />
+                        {showsChevron && <Arrow />}
                     </Li>
                 );
             })}
@@ -35,12 +39,10 @@ const NameAndIcon = styled.View`
 `;
 
 const Spacer = styled.View`
-    width: 8px;
+    width: 15px;
 `;
 
-const List = styled.View`
-    margin-vertical: 20px;
-`;
+const List = styled.View``;
 
 const Arrow = (props) => (
     <Svg
