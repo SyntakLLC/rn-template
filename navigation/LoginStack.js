@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import Login from '../screens/Login.js'
-import FullScreenCarousel from '../screens/FullScreenCarousel.js'
+import AppIntro from '../screens/AppIntro.js'
 
 const Stack = createStackNavigator()
 
@@ -12,8 +12,8 @@ export default function LoginStack() {
             })}
         >
             <Stack.Screen
-                name="FullScreenCarousel"
-                component={FullScreenCarousel}
+                name="AppIntro"
+                component={AppIntro}
                 options={{
                     animationEnabled: false,
                 }}

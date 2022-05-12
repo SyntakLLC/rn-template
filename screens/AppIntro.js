@@ -8,7 +8,7 @@ import '../global.js'
 
 const { width, height } = Dimensions.get('window')
 
-export default function FullScreenCarousel() {
+export default function AppIntro() {
     const isLoggedIn = useSelector((state) => state.isLoggedIn)
     const dispatch = useDispatch()
     const navigation = useNavigation()

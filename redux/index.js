@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 
 const initialState = {
-    isLoggedIn: true, // if false, we give login screen
+    isLoggedIn: false, // if false, we give login screen
 }
 
 // The Redux change state functions

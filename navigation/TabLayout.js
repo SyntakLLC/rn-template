@@ -1,9 +1,9 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Login from '../screens/Login.js';
-import EmptyState from '../screens/EmptyState.js';
-import FullScreenCarousel from '../screens/FullScreenCarousel.js';
-import ComponentDisplay from '../screens/ComponentDisplay.js';
-import IconBoxTabBar from './tabbars/IconBoxTabBar.js';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Login from '../screens/Login.js'
+import EmptyState from '../screens/EmptyState.js'
+import AppIntro from '../screens/AppIntro.js'
+import ComponentDisplay from '../screens/ComponentDisplay.js'
+import IconBoxTabBar from './tabbars/IconBoxTabBar.js'
 import {
     HomeSymbol,
     StatisticsSymbol,
@@ -17,28 +17,28 @@ import {
     FilledStatisticsSymbol,
     FilledDealsSymbol,
     FilledUsersSymbol,
-} from '../assets/icons/icons.js';
+} from '../assets/icons/icons.js'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 export default function Tabs() {
-    let tabs = returnAllTabs();
+    let tabs = returnAllTabs()
 
     return (
         <Tab.Navigator
             tabBar={(props) => <IconBoxTabBar tabs={tabs} {...props} />}
             screenOptions={({ route }) => ({ headerShown: false })}
         >
-            <Tab.Screen name='Login' component={Login} />
-            <Tab.Screen name='Login2' component={FullScreenCarousel} />
-            <Tab.Screen name='Login3' component={ComponentDisplay} />
+            <Tab.Screen name="Login" component={ComponentDisplay} />
+            <Tab.Screen name="Login2" component={AppIntro} />
+            <Tab.Screen name="Login3" component={Login} />
         </Tab.Navigator>
-    );
+    )
 }
 
 function returnAllTabs() {
-    const iconSizeForDot = 35;
-    const iconSizeForBox = 30;
+    const iconSizeForDot = 35
+    const iconSizeForBox = 30
 
     const tabs = [
         {
@@ -92,7 +92,7 @@ function returnAllTabs() {
                 />
             ),
         },
-    ];
+    ]
 
-    return tabs;
+    return tabs
 }
