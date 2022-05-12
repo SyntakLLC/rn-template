@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { Animated, Easing } from 'react-native';
-import Svg, { Circle, Path } from 'react-native-svg';
-import styled from 'styled-components';
-import LottieView from 'lottie-react-native';
-import ButtonText from '../texts/ButtonText.js';
+import { useState } from 'react'
+import { Animated, Easing } from 'react-native'
+import Svg, { Circle, Path } from 'react-native-svg'
+import styled from 'styled-components'
+// import LottieView from 'lottie-react-native';
+import ButtonText from '../texts/ButtonText.js'
 
 export default function CtaButton({
     children = 'Submit', // -> default text
@@ -17,18 +17,18 @@ export default function CtaButton({
     loadsOnPress = true, // should the loading icon appear on press?
 }) {
     // the prop is the default value. on press, we want to set loading to true.
-    const [loading, setLoading] = useState(isLoading);
+    const [loading, setLoading] = useState(isLoading)
 
     // derives the color of the button from our props.
-    let shouldDisable = loading || isDisabled || onPress == null;
-    let color = isDanger ? '#dc2626' : '#007aff';
-    if (shouldDisable) color = '#9ca3af';
+    let shouldDisable = loading || isDisabled || onPress == null
+    let color = isDanger ? '#dc2626' : '#007aff'
+    if (shouldDisable) color = '#9ca3af'
 
     return (
         <Touchable
             onPress={() => {
-                onPress();
-                if (loadsOnPress) setLoading(true);
+                onPress()
+                if (loadsOnPress) setLoading(true)
             }}
             disabled={shouldDisable}
             {...{ color, hasShadow, isFullyRounded, isSharp }}
@@ -36,12 +36,12 @@ export default function CtaButton({
             {loading ? (
                 <LoadingIcon />
             ) : (
-                <ButtonText uppercase={isSharp} color='#fff'>
+                <ButtonText uppercase={isSharp} color="#fff">
                     {children}
                 </ButtonText>
             )}
         </Touchable>
-    );
+    )
 }
 
 const Touchable = styled.TouchableOpacity`
@@ -59,10 +59,10 @@ const Touchable = styled.TouchableOpacity`
             ? `4px 4px 0px ${props.color}50`
             : `0px 0px 0px #ffffff50`};
     flex-direction: row;
-`;
+`
 
 function LoadingIcon() {
-    let spinValue = new Animated.Value(0);
+    let spinValue = new Animated.Value(0)
 
     // First set up animation
     Animated.loop(
@@ -71,14 +71,14 @@ function LoadingIcon() {
             duration: 1000,
             easing: Easing.linear, // Easing is an additional import from react-native
             useNativeDriver: true, // To make use of native driver for performance
-        }),
-    ).start();
+        })
+    ).start()
 
     // Next, interpolate beginning and end values (in this case 0 and 1)
     const spin = spinValue.interpolate({
         inputRange: [0, 1],
         outputRange: ['0deg', '360deg'],
-    });
+    })
 
     return (
         <Animated.View style={{ transform: [{ rotate: spin }] }}>
@@ -90,25 +90,25 @@ function LoadingIcon() {
                     width: 16,
                     height: 16,
                 }}
-                fill='none'
-                viewBox='0 0 24 24'
+                fill="none"
+                viewBox="0 0 24 24"
             >
                 <Circle
-                    className='opacity-25'
+                    className="opacity-25"
                     style={{ opacity: 0.25 }}
                     cx={12}
                     cy={12}
                     r={10}
-                    stroke='currentColor'
+                    stroke="currentColor"
                     strokeWidth={4}
                 />
                 <Path
-                    className='opacity-75'
+                    className="opacity-75"
                     style={{ opacity: 0.75 }}
-                    fill='currentColor'
-                    d='M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                    fill="currentColor"
+                    d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 />
             </Svg>
         </Animated.View>
-    );
+    )
 }
