@@ -1,16 +1,29 @@
-import styled from 'styled-components';
-import { Dimensions } from 'react-native';
-import { H1, H2, P2 } from '../components/texts/index.js';
-import { CtaButton } from '../components/buttons/index.js';
-import '../global.js';
+import styled from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux'
+import { Dimensions } from 'react-native'
+import { H1, H2, P2, Text } from '../components/texts/index.js'
+import { CtaButton } from '../components/buttons/index.js'
+import { useNavigation } from '@react-navigation/native'
+import '../global.js'
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 export default function FullScreenCarousel() {
+    const isLoggedIn = useSelector((state) => state.isLoggedIn)
+    const dispatch = useDispatch()
+    const navigation = useNavigation()
+
+    const handleClick = () => {
+        dispatch({ type: 'UPDATE_IS_LOGGED_IN', payload: true })
+    }
+
     return (
         <Background>
             <CarouselScrollView
                 horizontal
+                alwaysBounceHorizontal={false}
+                alwaysBounceVertical={false}
+                bounces={false}
                 scrollEventThrottle={16}
                 pagingEnabled={true}
                 decelerationRate={0}
@@ -19,82 +32,128 @@ export default function FullScreenCarousel() {
                 ref={(node) => (this.scrollRef = node)}
             >
                 <Page>
-                    <H1>Get motivated like never before</H1>
+                    <TextSection>
+                        <H1 isCenter>Get motivated like never before</H1>
+                        <Text isCenter>Get motivated like never before</Text>
+                    </TextSection>
 
                     <ButtonPosition>
                         <CtaButton
                             onPress={() => {
-                                moveBody(1);
+                                scrollToPage(1)
                             }}
                             loadsOnPress={false}
                         >
                             Next
                         </CtaButton>
+                        <Spacer />
+                        <P2 />
                     </ButtonPosition>
                 </Page>
 
                 <Page>
-                    <H1>See your call progress in real time</H1>
+                    <TextSection>
+                        <H1 isCenter>See progress in real time</H1>
+                        <Text isCenter>Get motivated like never before</Text>
+                    </TextSection>
 
                     <ButtonPosition>
                         <CtaButton
                             onPress={() => {
-                                moveBody(2);
+                                scrollToPage(2)
                             }}
                             loadsOnPress={false}
                         >
                             Next
                         </CtaButton>
+                        <Spacer />
+                        <P2 />
                     </ButtonPosition>
                 </Page>
 
                 <Page>
-                    <H2>
-                        Homexe.win, your personal sales and progress tracker
-                    </H2>
+                    <TextSection>
+                        <H2 isCenter>
+                            Homexe.win, your personal sales and progress tracker
+                        </H2>
+                    </TextSection>
 
                     <ButtonPosition>
-                        <CtaButton>Register</CtaButton>
+                        <CtaButton
+                            onPress={() => {
+                                navigation.navigate('Login')
+                                // dispatch({
+                                //     type: 'UPDATE_IS_LOGGED_IN',
+                                //     payload: true,
+                                // })
+                            }}
+                        >
+                            Register
+                        </CtaButton>
                         <Spacer />
                         <P2>Already have an account? Login here</P2>
                     </ButtonPosition>
                 </Page>
             </CarouselScrollView>
         </Background>
-    );
+    )
 }
 
-function moveBody(index) {
+function scrollToPage(index) {
     scrollRef.scrollTo({
         x: index * width,
         animation: false,
-    });
+    })
 }
 
 const Background = styled.SafeAreaView`
     flex: 1;
+    background-color: #000;
     background-color: ${global.bgColor};
-`;
+`
 
 const CarouselScrollView = styled.ScrollView`
     flex: 1;
-`;
+`
 
 const Page = styled.View`
     width: ${width}px;
     height: ${height}px;
     padding-horizontal: 20px;
-    padding-top: 100px;
-`;
+    padding-top: 40px;
+    background-color: ${global.bgColor};
+`
 
 const ButtonPosition = styled.View`
     position: absolute;
     width: 100%;
-    bottom: 150px;
+    bottom: 100px;
     align-self: center;
     align-items: center;
-`;
+`
 
 const Spacer = styled.View`
     height: 15px;
-`;
+`
+
+const TextSection = styled.View`
+    position: absolute;
+    height: ${height}px;
+    width: ${width}px;
+    bottom: 0px;
+    background-color: ${global.bgColor};
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 20px;
+    justify-content: center;
+    padding-bottom: 200px;
+`
+
+const Scale80View = styled.View`
+    transform: scale(0.7);
+`
+
+const Scale60View = styled.View`
+    transform: scale(0.5);
+    left: -70px;
+`
