@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import Login from '../screens/Login.js'
 import AppIntro from '../screens/AppIntro.js'
+import { fadeIn } from 'react-navigation-transitions'
 
 const Stack = createStackNavigator()
 
@@ -9,22 +10,12 @@ export default function LoginStack() {
         <Stack.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
+                transitionConfig: () => fadeIn(),
+                animationEnabled: false,
             })}
         >
-            <Stack.Screen
-                name="AppIntro"
-                component={AppIntro}
-                options={{
-                    animationEnabled: false,
-                }}
-            />
-            <Stack.Screen
-                name="Login"
-                component={Login}
-                options={{
-                    animationEnabled: false,
-                }}
-            />
+            <Stack.Screen name="AppIntro" component={AppIntro} />
+            <Stack.Screen name="Login" component={Login} />
         </Stack.Navigator>
     )
 }
