@@ -64,6 +64,7 @@ export default function CtaButton({
                     width: '100%',
                     height: '100%',
                     justifyContent: 'center',
+                    alignItems: 'center',
                 }}
                 source={require('../../assets/lottie/confetti.json')}
             >
