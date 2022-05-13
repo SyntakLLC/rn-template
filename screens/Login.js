@@ -1,18 +1,50 @@
-import { useState } from 'react'
-import { Animated, Easing } from 'react-native'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState, useRef } from 'react'
+import { Animated, Easing, Dimensions, View, Keyboard } from 'react-native'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { StatusBar } from 'expo-status-bar'
 import Svg, { Path } from 'react-native-svg'
 import { CtaButton } from '../components/buttons/index.js'
 import { H1, H2, P2 } from '../components/texts/index.js'
 import { Input } from '../components/inputs/index.js'
+import LottieView from 'lottie-react-native'
+import { BlurView } from 'expo-blur'
 import '../global.js'
+
+const { width, height } = Dimensions.get('window')
 
 export default function App() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const dispatch = useDispatch()
+
+    const animation = useRef(null)
+
+    const dispatch = useDispatch() // allows us to set redux value "isLoggedIn"
+
+    // for the logging in modal
+    const [modalOpacity] = useState(new Animated.Value(0))
+    const [modalScale] = useState(new Animated.Value(0.5))
+
+    const logIn = () => {
+        Keyboard.dismiss()
+        Animated.timing(modalOpacity, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: true,
+        }).start()
+        Animated.timing(modalScale, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: true,
+        }).start()
+        animation.current?.play()
+        setTimeout(() => {
+            dispatch({
+                type: 'UPDATE_IS_LOGGED_IN',
+                payload: true,
+            })
+        }, 3000)
+    }
 
     return (
         <Background>
@@ -31,25 +63,59 @@ export default function App() {
                     </H2>
                 </HeroView>
 
+                <Animated.View
+                    style={{
+                        opacity: modalOpacity,
+                        position: 'absolute',
+                        alignSelf: 'center',
+                        alignItems: 'center',
+                        zIndex: 100,
+                        transform: [{ scale: modalScale }],
+                    }}
+                >
+                    <BlurView
+                        style={{
+                            width: width / 1.2,
+                            height: height / 2,
+                            padding: 30,
+                            borderRadius: 30,
+                            overflow: 'hidden',
+                            justifyContent: 'space-between',
+                        }}
+                        intensity={100}
+                    >
+                        <LottieView
+                            autoPlay
+                            ref={animation}
+                            loop={false}
+                            style={{
+                                width: '80%',
+                                height: '80%',
+                            }}
+                            source={require('../assets/lottie/astronaut.json')}
+                        />
+                        <H2 isCenter>Logging you in...</H2>
+                    </BlurView>
+                </Animated.View>
+
                 <PaddedView>
-                    <Input
-                        placeholder="Email"
-                        value={email}
-                        onEdit={setEmail}
-                        keyboardType={'email-address'}
-                    />
-                    <Input
-                        placeholder="Password"
-                        value={password}
-                        onEdit={setPassword}
-                        isSecure={true}
-                    />
+                    <View style={{ zIndex: 500 }}>
+                        <Input
+                            placeholder="Email"
+                            value={email}
+                            onEdit={setEmail}
+                            keyboardType={'email-address'}
+                        />
+                        <Input
+                            placeholder="Password"
+                            value={password}
+                            onEdit={setPassword}
+                            isSecure={true}
+                        />
+                    </View>
                     <CtaButton
                         onPress={() => {
-                            dispatch({
-                                type: 'UPDATE_IS_LOGGED_IN',
-                                payload: true,
-                            })
+                            logIn()
                         }}
                         isDisabled={!email || !password}
                     >
@@ -86,6 +152,7 @@ const HeroView = styled.View`
 `
 
 const KeyboardView = styled.KeyboardAvoidingView`
+    justify-content: center;
     width: 100%;
     height: 100%;
     border-top-left-radius: 30px;
