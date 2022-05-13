@@ -11,7 +11,7 @@ export default function CtaButton({
     isLoading = false, // -> disable button and add loading indicator
     isDisabled = false, // -> disable button, no loading indicator
     hasShadow = true, // does the button have a drop shadow
-    hasConfetti = true, // do we wanna show the confetti animation
+    hideConfetti = false, // do we wanna show the confetti animation
     isFullyRounded = false, // makes the border radius full
     isSharp = false, // removes all border radius and autocapitalizes the text
     overrideLoadingBehavior = false, // should we hide the loading icon on press?
@@ -49,7 +49,7 @@ export default function CtaButton({
             }}
             onPress={() => {
                 onPress()
-                if (hasConfetti) confetti.current?.play()
+                if (!hideConfetti) confetti.current?.play()
                 if (!overrideLoadingBehavior) setLoading(true)
             }}
             disabled={shouldDisable}
