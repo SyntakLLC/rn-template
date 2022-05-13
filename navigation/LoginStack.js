@@ -5,9 +5,9 @@ import AppIntro from '../screens/AppIntro.js'
 const Stack = createStackNavigator()
 
 export default function LoginStack() {
-    const forFade = ({ current }) => ({
+    const fadeTransition = ({ current }) => ({
         cardStyle: {
-            opacity: current.progress,
+            opacity: current.progress, // represents a fade transition
         },
     })
 
@@ -15,7 +15,7 @@ export default function LoginStack() {
         <Stack.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
-                cardStyleInterpolator: forFade,
+                cardStyleInterpolator: fadeTransition, // so any navigation in this stack fades
             })}
         >
             <Stack.Screen name="AppIntro" component={AppIntro} />
