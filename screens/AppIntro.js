@@ -73,6 +73,7 @@ export default function AppIntro() {
                             onPress={() => {
                                 navigation.navigate('Login')
                             }}
+                            overrideLoadingBehavior
                         >
                             Register
                         </CtaButton>
