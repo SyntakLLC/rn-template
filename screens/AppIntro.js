@@ -32,9 +32,10 @@ export default function AppIntro() {
                             onPress={() => {
                                 scrollToPage(1)
                             }}
+                            hideConfetti
                             overrideLoadingBehavior
                         >
-                            Next
+                            Next ➜
                         </CtaButton>
                         <Spacer />
                         <P2 />
@@ -52,9 +53,10 @@ export default function AppIntro() {
                             onPress={() => {
                                 scrollToPage(2)
                             }}
+                            hideConfetti
                             overrideLoadingBehavior
                         >
-                            Next
+                            Next ➜
                         </CtaButton>
                         <Spacer />
                         <P2 />
@@ -73,6 +75,7 @@ export default function AppIntro() {
                             onPress={() => {
                                 navigation.navigate('Login')
                             }}
+                            hideConfetti
                             overrideLoadingBehavior
                         >
                             Register
