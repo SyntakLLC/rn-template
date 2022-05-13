@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { P2 } from '../texts/index.js';
-import '../../global.js';
+import { useState } from 'react'
+import styled from 'styled-components'
+import { P2 } from '../texts/index.js'
+import '../../global.js'
 
 export default function Input({
     color = '#9ca3af', // text color
@@ -15,7 +15,7 @@ export default function Input({
     value = '', // value --> this should be "state"
     onEdit, // edit method --> should be the edit state method
 }) {
-    const [border, setBorder] = useState(borderColor);
+    const [border, setBorder] = useState(borderColor)
     return (
         <InputGroup>
             {/* Only show the label if it has a value */}
@@ -37,17 +37,18 @@ export default function Input({
                     borderColor: border,
                     backgroundColor: global.bgColor,
                     color: color,
+                    zIndex: 100,
                 }}
                 border={border}
                 onFocus={() => {
                     // setBorder(global.primaryColor);
                 }}
                 onBlur={() => {
-                    setBorder(borderColor);
+                    setBorder(borderColor)
                 }}
             />
         </InputGroup>
-    );
+    )
 }
 
 const I = styled.TextInput`
@@ -65,11 +66,11 @@ const I = styled.TextInput`
     font-size: 17px;
     border-width: 2px;
     padding-horizontal: 15px;
-`;
+`
 
 const InputGroup = styled.View`
     align-items: leading;
-`;
+`
 const LabelPadding = styled.View`
     padding-horizontal: 15px;
-`;
+`
