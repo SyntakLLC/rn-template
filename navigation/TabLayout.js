@@ -30,7 +30,7 @@ export default function Tabs() {
             screenOptions={({ route }) => ({ headerShown: false })}
         >
             <Tab.Screen name="Login" component={ComponentDisplay} />
-            <Tab.Screen name="Login2" component={AppIntro} />
+            <Tab.Screen name="Login2" component={EmptyState} />
             <Tab.Screen name="Login3" component={Login} />
         </Tab.Navigator>
     )

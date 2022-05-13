@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar'
 import Svg, { Path } from 'react-native-svg'
 import { CtaButton } from '../components/buttons/index.js'
 import { H1, H2, P2 } from '../components/texts/index.js'
+import { Spacer } from '../components/views/index.js'
 import { Input } from '../components/inputs/index.js'
 import LottieView from 'lottie-react-native'
 import { BlurView } from 'expo-blur'
@@ -166,11 +167,6 @@ const KeyboardView = styled.KeyboardAvoidingView`
 const PaddedView = styled.View`
     padding-horizontal: 20px;
     top: -40px;
-`
-
-const Spacer = styled.View`
-    width: 100%;
-    height: 20px;
 `
 
 function Blob1(props) {

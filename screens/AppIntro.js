@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Dimensions } from 'react-native'
 import { H1, H2, P2, Text } from '../components/texts/index.js'
 import { CtaButton } from '../components/buttons/index.js'
+import { Spacer } from '../components/views/index.js'
 import { useNavigation } from '@react-navigation/native'
 import '../global.js'
 
@@ -120,10 +121,6 @@ const ButtonPosition = styled.View`
     bottom: 100px;
     align-self: center;
     align-items: center;
-`
-
-const Spacer = styled.View`
-    height: 15px;
 `
 
 const TextSection = styled.View`
