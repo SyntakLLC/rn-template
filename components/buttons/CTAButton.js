@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Animated, Easing } from 'react-native'
 import Svg, { Circle, Path } from 'react-native-svg'
 import styled from 'styled-components'
-// import LottieView from 'lottie-react-native';
+import LottieView from 'lottie-react-native'
 import ButtonText from '../texts/ButtonText.js'
 
 export default function CtaButton({
@@ -11,36 +11,71 @@ export default function CtaButton({
     isLoading = false, // -> disable button and add loading indicator
     isDisabled = false, // -> disable button, no loading indicator
     hasShadow = true, // does the button have a drop shadow
+    hasConfetti = true, // do we wanna show the confetti animation
     isFullyRounded = false, // makes the border radius full
-    isSharp = false, // removes all border radius
-    onPress, // -> function to call on press
+    isSharp = false, // removes all border radius and autocapitalizes the text
     overrideLoadingBehavior = false, // should we hide the loading icon on press?
+    onPress, // -> function to call on press
 }) {
     // the prop is the default value. on press, we want to set loading to true.
     const [loading, setLoading] = useState(isLoading)
+
+    // changes to 0.90 on press in
+    const [buttonScale] = useState(new Animated.Value(1))
 
     // derives the color of the button from our props.
     let shouldDisable = loading || isDisabled || onPress == null
     let color = isDanger ? '#dc2626' : '#007aff'
     if (shouldDisable) color = '#9ca3af'
 
+    // confetti animation ref
+    const confetti = useRef(null)
+
     return (
-        <Touchable
+        <AnimatedTouchable
+            onPressIn={() => {
+                Animated.timing(buttonScale, {
+                    toValue: 0.95,
+                    duration: 100,
+                    useNativeDriver: true,
+                }).start()
+            }}
+            onPressOut={() => {
+                Animated.timing(buttonScale, {
+                    toValue: 1,
+                    duration: 200,
+                    useNativeDriver: true,
+                }).start()
+            }}
             onPress={() => {
                 onPress()
+                if (hasConfetti) confetti.current?.play()
                 if (!overrideLoadingBehavior) setLoading(true)
             }}
             disabled={shouldDisable}
             {...{ color, hasShadow, isFullyRounded, isSharp }}
+            style={{ transform: [{ scale: buttonScale }] }}
         >
-            {loading ? (
-                <LoadingIcon />
-            ) : (
-                <ButtonText uppercase={isSharp} color="#fff">
-                    {children}
-                </ButtonText>
-            )}
-        </Touchable>
+            <LottieView
+                loop={false}
+                progress={1}
+                ref={confetti}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    justifyContent: 'center',
+                }}
+                source={require('../../assets/lottie/confetti.json')}
+            >
+                {loading ? (
+                    <LoadingIcon />
+                ) : (
+                    <ButtonText uppercase={isSharp} color="#fff">
+                        {children}
+                    </ButtonText>
+                )}
+            </LottieView>
+        </AnimatedTouchable>
     )
 }
 
@@ -60,6 +95,8 @@ const Touchable = styled.TouchableOpacity`
             : `0px 0px 0px #ffffff50`};
     flex-direction: row;
 `
+
+const AnimatedTouchable = new Animated.createAnimatedComponent(Touchable)
 
 function LoadingIcon() {
     let spinValue = new Animated.Value(0)
