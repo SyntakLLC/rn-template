@@ -1,17 +1,21 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import Login from '../screens/Login.js'
 import AppIntro from '../screens/AppIntro.js'
-import { fadeIn } from 'react-navigation-transitions'
 
 const Stack = createStackNavigator()
 
 export default function LoginStack() {
+    const forFade = ({ current }) => ({
+        cardStyle: {
+            opacity: current.progress,
+        },
+    })
+
     return (
         <Stack.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
-                transitionConfig: () => fadeIn(),
-                animationEnabled: false,
+                cardStyleInterpolator: forFade,
             })}
         >
             <Stack.Screen name="AppIntro" component={AppIntro} />
