@@ -14,7 +14,7 @@ export default function CtaButton({
     isFullyRounded = false, // makes the border radius full
     isSharp = false, // removes all border radius
     onPress, // -> function to call on press
-    loadsOnPress = true, // should the loading icon appear on press?
+    overrideLoadingBehavior = false, // should we hide the loading icon on press?
 }) {
     // the prop is the default value. on press, we want to set loading to true.
     const [loading, setLoading] = useState(isLoading)
@@ -28,7 +28,7 @@ export default function CtaButton({
         <Touchable
             onPress={() => {
                 onPress()
-                if (loadsOnPress) setLoading(true)
+                if (!overrideLoadingBehavior) setLoading(true)
             }}
             disabled={shouldDisable}
             {...{ color, hasShadow, isFullyRounded, isSharp }}

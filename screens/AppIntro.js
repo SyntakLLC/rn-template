@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { useSelector, useDispatch } from 'react-redux'
 import { Dimensions } from 'react-native'
 import { H1, H2, P2, Text } from '../components/texts/index.js'
 import { CtaButton } from '../components/buttons/index.js'
@@ -9,22 +8,13 @@ import '../global.js'
 const { width, height } = Dimensions.get('window')
 
 export default function AppIntro() {
-    const isLoggedIn = useSelector((state) => state.isLoggedIn)
-    const dispatch = useDispatch()
     const navigation = useNavigation()
-
-    const handleClick = () => {
-        dispatch({ type: 'UPDATE_IS_LOGGED_IN', payload: true })
-    }
 
     return (
         <Background>
             <CarouselScrollView
                 horizontal
-                alwaysBounceHorizontal={false}
-                alwaysBounceVertical={false}
                 bounces={false}
-                scrollEventThrottle={16}
                 pagingEnabled={true}
                 decelerationRate={0}
                 snapToAlignment={'center'}
@@ -42,7 +32,7 @@ export default function AppIntro() {
                             onPress={() => {
                                 scrollToPage(1)
                             }}
-                            loadsOnPress={false}
+                            overrideLoadingBehavior
                         >
                             Next
                         </CtaButton>
@@ -62,7 +52,7 @@ export default function AppIntro() {
                             onPress={() => {
                                 scrollToPage(2)
                             }}
-                            loadsOnPress={false}
+                            overrideLoadingBehavior
                         >
                             Next
                         </CtaButton>
@@ -82,10 +72,6 @@ export default function AppIntro() {
                         <CtaButton
                             onPress={() => {
                                 navigation.navigate('Login')
-                                // dispatch({
-                                //     type: 'UPDATE_IS_LOGGED_IN',
-                                //     payload: true,
-                                // })
                             }}
                         >
                             Register
