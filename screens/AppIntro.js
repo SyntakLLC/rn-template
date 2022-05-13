@@ -135,12 +135,3 @@ const TextSection = styled.View`
     justify-content: center;
     padding-bottom: 200px;
 `
-
-const Scale80View = styled.View`
-    transform: scale(0.7);
-`
-
-const Scale60View = styled.View`
-    transform: scale(0.5);
-    left: -70px;
-`
