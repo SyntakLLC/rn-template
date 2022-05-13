@@ -81,6 +81,7 @@ export default function App() {
                             borderRadius: 30,
                             overflow: 'hidden',
                             justifyContent: 'space-between',
+                            alignItems: 'center',
                         }}
                         intensity={100}
                     >
@@ -91,6 +92,7 @@ export default function App() {
                             style={{
                                 width: '80%',
                                 height: '80%',
+                                left: '5%',
                             }}
                             source={require('../assets/lottie/astronaut.json')}
                         />
