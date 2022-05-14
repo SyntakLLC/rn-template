@@ -77,7 +77,7 @@ export default function App() {
                     <BlurView
                         style={{
                             width: width / 1.2,
-                            height: height / 2,
+                            height: height / 2.5,
                             padding: 30,
                             borderRadius: 30,
                             overflow: 'hidden',
