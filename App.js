@@ -17,7 +17,7 @@ export default function App() {
             translucent={true}
             isLoaded={isLoaded} // so we pass isLoaded to the splash screen
             logoImage={require('./assets/splash.png')}
-            backgroundColor={'#007aff'}
+            backgroundColor={global.primaryColor}
             logoHeight={150}
             logoWidth={150}
         >

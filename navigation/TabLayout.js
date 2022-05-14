@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Login from '../screens/Login.js'
+import WelcomeBack from '../screens/WelcomeBack.js'
 import EmptyState from '../screens/EmptyState.js'
-import AppIntro from '../screens/AppIntro.js'
 import ComponentDisplay from '../screens/ComponentDisplay.js'
 import IconBoxTabBar from './tabbars/IconBoxTabBar.js'
 import {
@@ -31,7 +30,7 @@ export default function Tabs() {
         >
             <Tab.Screen name="Login" component={ComponentDisplay} />
             <Tab.Screen name="Login2" component={EmptyState} />
-            <Tab.Screen name="Login3" component={Login} />
+            <Tab.Screen name="Login3" component={WelcomeBack} />
         </Tab.Navigator>
     )
 }

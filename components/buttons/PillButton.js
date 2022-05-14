@@ -1,24 +1,24 @@
-import styled from 'styled-components';
-import ButtonText from '../texts/ButtonText.js';
-import '../../global.js';
+import styled from 'styled-components'
+import ButtonText from '../texts/ButtonText.js'
+import '../../global.js'
 
-export default function CtaButton({
+export default function PillButton({
     children = 'Submit', // -> default text
     isDanger = false, // -> make button red
     isDisabled = false, // -> disable button, no loading indicator
     onPress, // -> function to call on press
-    color = '#007aff',
+    color = global.primaryColor,
 }) {
     // derives the color of the button from our props.
-    let c = color;
-    if (isDanger) c = '#dc2626';
-    if (isDisabled || onPress == null) c = '#9ca3af';
+    let c = color
+    if (isDanger) c = '#dc2626'
+    if (isDisabled || onPress == null) c = '#9ca3af'
 
     return (
         <Touchable
             onPress={() => {
-                onPress();
-                setLoading(true);
+                onPress()
+                setLoading(true)
             }}
             disabled={isDisabled || onPress == null}
             style={{
@@ -29,7 +29,7 @@ export default function CtaButton({
         >
             <ButtonText color={c}>{children}</ButtonText>
         </Touchable>
-    );
+    )
 }
 
 const Touchable = styled.TouchableOpacity`
@@ -42,5 +42,5 @@ const Touchable = styled.TouchableOpacity`
     margin-bottom: 10px;
     align-items: center;
     box-shadow: 2px 2px 0px ${(props) => props.color};
-`;
+`
 // box-shadow: 0px 2px 0px #00000030;

@@ -8,6 +8,7 @@ import { CtaButton } from '../components/buttons/index.js'
 import { H1, H2, P2 } from '../components/texts/index.js'
 import { Spacer } from '../components/views/index.js'
 import { Input } from '../components/inputs/index.js'
+import { Background } from '../components/views/index.js'
 import LottieView from 'lottie-react-native'
 import { BlurView } from 'expo-blur'
 import '../global.js'
@@ -48,100 +49,96 @@ export default function App() {
     }
 
     return (
-        <Background>
+        <Background noScroll color="#000">
             <StatusBar style="light" />
-            <KeyboardView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            <HeroView color={global.primaryColor}>
+                <Blob1 position="absolute" left={-200} />
+                <Blob2 position="absolute" left={-200} top={-400} />
+                <H1 color="#fff" isCenter>
+                    Track your call progress
+                </H1>
+                <H2 color="#ffffff90" isCenter>
+                    With metrics
+                </H2>
+            </HeroView>
+
+            <Animated.View
+                style={{
+                    opacity: modalOpacity,
+                    position: 'absolute',
+                    alignSelf: 'center',
+                    alignItems: 'center',
+                    zIndex: 100,
+                    transform: [{ scale: modalScale }],
+                }}
             >
-                <HeroView color={global.primaryColor}>
-                    <Blob1 position="absolute" left={-200} />
-                    <Blob2 position="absolute" left={-200} top={-400} />
-                    <H1 color="#fff" isCenter>
-                        Track your call progress
-                    </H1>
-                    <H2 color="#ffffff90" isCenter>
-                        With metrics
-                    </H2>
-                </HeroView>
-
-                <Animated.View
+                <BlurView
                     style={{
-                        opacity: modalOpacity,
-                        position: 'absolute',
-                        alignSelf: 'center',
+                        width: width / 1.2,
+                        height: height / 2.5,
+                        padding: 30,
+                        borderRadius: 30,
+                        overflow: 'hidden',
+                        justifyContent: 'space-between',
                         alignItems: 'center',
-                        zIndex: 100,
-                        transform: [{ scale: modalScale }],
                     }}
+                    intensity={100}
                 >
-                    <BlurView
+                    <LottieView
+                        autoPlay
+                        ref={animation}
+                        loop={false}
                         style={{
-                            width: width / 1.2,
-                            height: height / 2.5,
-                            padding: 30,
-                            borderRadius: 30,
-                            overflow: 'hidden',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
+                            width: '80%',
+                            height: '80%',
+                            left: '5%',
                         }}
-                        intensity={100}
-                    >
-                        <LottieView
-                            autoPlay
-                            ref={animation}
-                            loop={false}
-                            style={{
-                                width: '80%',
-                                height: '80%',
-                                left: '5%',
-                            }}
-                            source={require('../assets/lottie/astronaut.json')}
-                        />
-                        <H2 isCenter>Logging you in...</H2>
-                    </BlurView>
-                </Animated.View>
+                        source={require('../assets/lottie/astronaut.json')}
+                    />
+                    <H2 isCenter>Logging you in...</H2>
+                </BlurView>
+            </Animated.View>
 
-                <PaddedView>
-                    <View style={{ zIndex: 500 }}>
-                        <Input
-                            placeholder="Email"
-                            value={email}
-                            onEdit={setEmail}
-                            keyboardType={'email-address'}
-                        />
-                        <Input
-                            placeholder="Password"
-                            value={password}
-                            onEdit={setPassword}
-                            isSecure={true}
-                        />
-                    </View>
-                    <CtaButton
-                        onPress={() => {
-                            logIn()
-                        }}
-                        isDisabled={!email || !password}
-                    >
-                        Log in
-                    </CtaButton>
+            <PaddedView>
+                <View style={{ zIndex: 500 }}>
+                    <Input
+                        placeholder="Email"
+                        value={email}
+                        onEdit={setEmail}
+                        keyboardType={'email-address'}
+                    />
+                    <Input
+                        placeholder="Password"
+                        value={password}
+                        onEdit={setPassword}
+                        isSecure={true}
+                    />
+                </View>
+                <CtaButton
+                    onPress={() => {
+                        logIn()
+                    }}
+                    isDisabled={!email || !password}
+                >
+                    Log in
+                </CtaButton>
 
-                    <Spacer />
+                <Spacer />
 
-                    <P2 isCenter>Forgot password</P2>
-                </PaddedView>
-            </KeyboardView>
+                <P2 isCenter>Forgot password</P2>
+            </PaddedView>
         </Background>
     )
 }
 
-const Background = styled.SafeAreaView`
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-`
+// const Background = styled.SafeAreaView`
+//     flex: 1;
+//     align-items: center;
+//     justify-content: center;
+//     width: 100%;
+//     height: 100%;
+//     background-color: black;
+// `
 
 const HeroView = styled.View`
     flex: 1;

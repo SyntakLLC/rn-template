@@ -22,9 +22,6 @@ export default function CtaButton({
     // the prop is the default value. on press, we want to set loading to true.
     const [loading, setLoading] = useState(isLoading)
 
-    // changes to 0.90 on press in
-    const [buttonScale] = useState(new Animated.Value(1))
-
     // derives the color of the button from our props.
     let shouldDisable = loading || isDisabled || onPress == null
     let color = isDanger ? '#dc2626' : bgColor
@@ -34,60 +31,53 @@ export default function CtaButton({
     const confetti = useRef(null)
 
     return (
-        <AnimatedTouchable
-            onPressIn={() => {
-                Animated.timing(buttonScale, {
-                    toValue: 0.95,
-                    duration: 100,
-                    useNativeDriver: true,
-                }).start()
-            }}
-            onPressOut={() => {
-                Animated.timing(buttonScale, {
-                    toValue: 1,
-                    duration: 200,
-                    useNativeDriver: true,
-                }).start()
-            }}
-            onPress={() => {
-                onPress()
-                if (!hideConfetti) confetti.current?.play()
-                if (!overrideLoadingBehavior) setLoading(true)
-            }}
-            disabled={shouldDisable}
-            {...{ color, hasShadow, isFullyRounded, isSharp }}
-            style={{ transform: [{ scale: buttonScale }] }}
-        >
-            <LottieView
-                loop={false}
-                progress={1}
-                ref={confetti}
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
+        <Section>
+            <Touchable
+                onPress={() => {
+                    onPress()
+                    if (!hideConfetti) confetti.current?.play()
+                    if (!overrideLoadingBehavior) setLoading(true)
                 }}
-                source={require('../../assets/lottie/confetti.json')}
+                disabled={shouldDisable}
+                {...{ color, hasShadow, isFullyRounded, isSharp }}
             >
-                {loading ? (
-                    <LoadingIcon />
-                ) : (
-                    <ButtonText uppercase={isSharp} color={textColor}>
-                        {children}
-                    </ButtonText>
-                )}
-            </LottieView>
-        </AnimatedTouchable>
+                <LottieView
+                    loop={false}
+                    progress={1}
+                    ref={confetti}
+                    style={{
+                        width: '120%',
+                        height: '120%',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                    source={require('../../assets/lottie/confetti.json')}
+                >
+                    {loading ? (
+                        <LoadingIcon />
+                    ) : (
+                        <ButtonText uppercase={isSharp} color={textColor}>
+                            {children}
+                        </ButtonText>
+                    )}
+                </LottieView>
+            </Touchable>
+        </Section>
     )
 }
 
-const Touchable = styled.TouchableOpacity`
-    width: 94%;
+const Section = styled.View`
     width: 100%;
-    border-radius: ${(props) =>
+    align-items: flex-end;
+`
+
+const Touchable = styled.TouchableOpacity`
+    width: 30%;
+    border-top-left-radius: ${(props) =>
         props.isFullyRounded ? '9999px' : props.isSharp ? '0px' : '15px'};
-    height: 55px;
+    border-bottom-left-radius: ${(props) =>
+        props.isFullyRounded ? '9999px' : props.isSharp ? '0px' : '15px'};
+    height: 65px;
     background-color: ${(props) => props.color};
     justify-content: center;
     margin-vertical: 10px;
@@ -98,8 +88,6 @@ const Touchable = styled.TouchableOpacity`
             : `0px 0px 0px #ffffff50`};
     flex-direction: row;
 `
-
-const AnimatedTouchable = new Animated.createAnimatedComponent(Touchable)
 
 function LoadingIcon() {
     let spinValue = new Animated.Value(0)

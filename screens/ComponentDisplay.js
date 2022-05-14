@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import { H1, H2, P2 } from '../components/texts/index.js'
 import { Row } from '../components/layouts/index.js'
 import ModernIconList from '../components/lists/ModernIconList.js'
+import { Background } from '../components/views/index.js'
 import { Spacer } from '../components/views/index.js'
 import Alert from '../components/alerts/Alert.js'
 import Svg, { Path } from 'react-native-svg'
 import '../global.js'
-import ElegantButton from '../components/buttons/ElegantButton.js'
 
 export default function App() {
     const dispatch = useDispatch() // allows us to set redux value "isLoggedIn"
@@ -21,69 +21,46 @@ export default function App() {
     }
 
     return (
-        <Background style={{ backgroundColor: global.bgColor }}>
-            <KeyboardView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        <Background>
+            <H1>Hello Peter</H1>
+            <Alert onPress={() => logout()}>
+                You have a meeting today with jk@paperless.com.
+            </Alert>
+
+            <Spacer />
+
+            <H2>Stories</H2>
+            <ScrollView
+                horizontal
+                style={{ paddingVertical: 15 }}
+                showsHorizontalScrollIndicator={false}
             >
-                <ScrollView
-                    style={{
-                        paddingVertical: 30,
-                        width: '100%',
-                        paddingHorizontal: 20,
-                        overflow: 'shown',
-                    }}
-                >
-                    <H1>Hello Peter</H1>
-                    <Alert onPress={() => logout()}>
-                        You have a meeting today with jk@paperless.com.
-                    </Alert>
+                <AnalyticsPiece color="#c7a7d4" />
+                <AnalyticsPiece color="#f48479" />
+                <AnalyticsPiece color="#f6d690" />
+            </ScrollView>
 
-                    <Spacer />
+            <Spacer />
 
-                    <H2>Stories</H2>
-                    <ScrollView
-                        horizontal
-                        style={{ paddingVertical: 15 }}
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        <AnalyticsPiece color="#c7a7d4" />
-                        <AnalyticsPiece color="#f48479" />
-                        <AnalyticsPiece color="#f6d690" />
-                    </ScrollView>
-
-                    <Spacer />
-
-                    <Row
-                        style={{
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                        }}
-                    >
-                        <H2>Goals</H2>
-                        <P2>(this week)</P2>
-                    </Row>
-                    <ModernIconList
-                        items={[
-                            { name: 'My accounts', icon: <ListStarIcon /> },
-                            { name: 'My orders', icon: <ListStarIcon /> },
-                            { name: 'My saved', icon: <ListStarIcon /> },
-                        ]}
-                    />
-                </ScrollView>
-            </KeyboardView>
+            <Row
+                style={{
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                }}
+            >
+                <H2>Goals</H2>
+                <P2>(this week)</P2>
+            </Row>
+            <ModernIconList
+                items={[
+                    { name: 'My accounts', icon: <ListStarIcon /> },
+                    { name: 'My orders', icon: <ListStarIcon /> },
+                    { name: 'My saved', icon: <ListStarIcon /> },
+                ]}
+            />
         </Background>
     )
 }
-
-const Background = styled.SafeAreaView`
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-`
-
-const KeyboardView = styled.KeyboardAvoidingView`
-    flex: 1;
-`
 
 const AnalyticsPiece = styled.View`
     height: 180px;
