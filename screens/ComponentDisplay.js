@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { ScrollView } from 'react-native'
 import styled from 'styled-components'
 import { H1, H2, P2 } from '../components/texts/index.js'
@@ -10,7 +10,14 @@ import Svg, { Path } from 'react-native-svg'
 import '../global.js'
 
 export default function App() {
-    let [text, updateText] = useState('')
+    const dispatch = useDispatch() // allows us to set redux value "isLoggedIn"
+
+    const logout = () => {
+        dispatch({
+            type: 'UPDATE_IS_LOGGED_IN',
+            payload: false,
+        })
+    }
 
     return (
         <Background style={{ backgroundColor: global.bgColor }}>
@@ -26,7 +33,7 @@ export default function App() {
                     }}
                 >
                     <H1>Hello Peter</H1>
-                    <Alert>
+                    <Alert onPress={() => logout()}>
                         You have a meeting today with jk@paperless.com.
                     </Alert>
 
