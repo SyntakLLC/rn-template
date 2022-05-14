@@ -8,6 +8,7 @@ import { Spacer } from '../components/views/index.js'
 import Alert from '../components/alerts/Alert.js'
 import Svg, { Path } from 'react-native-svg'
 import '../global.js'
+import ElegantButton from '../components/buttons/ElegantButton.js'
 
 export default function App() {
     const dispatch = useDispatch() // allows us to set redux value "isLoggedIn"

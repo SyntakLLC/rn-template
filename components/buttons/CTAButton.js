@@ -15,6 +15,8 @@ export default function CtaButton({
     isFullyRounded = false, // makes the border radius full
     isSharp = false, // removes all border radius and autocapitalizes the text
     overrideLoadingBehavior = false, // should we hide the loading icon on press?
+    bgColor = '#007aff', // gives the button a custom bg color
+    textColor = '#fff', // gives the button a custom text color
     onPress, // -> function to call on press
 }) {
     // the prop is the default value. on press, we want to set loading to true.
@@ -25,7 +27,7 @@ export default function CtaButton({
 
     // derives the color of the button from our props.
     let shouldDisable = loading || isDisabled || onPress == null
-    let color = isDanger ? '#dc2626' : '#007aff'
+    let color = isDanger ? '#dc2626' : bgColor
     if (shouldDisable) color = '#9ca3af'
 
     // confetti animation ref
@@ -71,7 +73,7 @@ export default function CtaButton({
                 {loading ? (
                     <LoadingIcon />
                 ) : (
-                    <ButtonText uppercase={isSharp} color="#fff">
+                    <ButtonText uppercase={isSharp} color={textColor}>
                         {children}
                     </ButtonText>
                 )}
